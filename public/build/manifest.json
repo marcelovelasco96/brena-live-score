@@ -1,0 +1,23 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-D3EZrD6Q.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-tUMsq8Mz.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/overlay.js": {
+    "file": "assets/overlay-CSSEehsI.js",
+    "name": "overlay",
+    "src": "resources/js/overlay.js",
+    "isEntry": true
+  }
+}
