@@ -187,7 +187,7 @@
                 const seconds = String(data.timer_seconds % 60).padStart(2, '0');
 
                 document.getElementById('timer-text').textContent = `${minutes}:${seconds}`;
-
+                document.getElementById('timer-text').classList.remove('invisible');
                 document.getElementById('team-a-score').textContent = data.team_a_score;
                 document.getElementById('team-b-score').textContent = data.team_b_score;
                 document.getElementById('period-text').textContent = data.period;

@@ -37,8 +37,8 @@
             <p class="text-blue-400 text-xs font-black uppercase tracking-[0.25em] mb-4">Tiempo de juego
             </p>
 
-            <div id="timer-text" class="text-7xl md:text-8xl font-black tracking-tight">
-                {{ floor($match->timer_seconds / 60) }}:{{ str_pad($match->timer_seconds % 60, 2, '0', STR_PAD_LEFT) }}
+            <div id="timer-text" class="text-7xl md:text-8xl font-black tracking-tight invisible">
+                00:00
             </div>
 
             <div id="period-text"
