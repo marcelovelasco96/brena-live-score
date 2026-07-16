@@ -38,7 +38,7 @@
             </p>
 
             <div id="timer-text" class="text-7xl md:text-8xl font-black tracking-tight invisible">
-                00:00
+                &nbsp;
             </div>
 
             <div id="period-text"
