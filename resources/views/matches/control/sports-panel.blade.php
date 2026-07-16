@@ -16,21 +16,6 @@
                 </h2>
             </div>
 
-            <form data-full-refresh="true" method="POST" action="/matches/{{ $match->id }}/banner">
-                @csrf
-                @method('PATCH')
-
-                <input type="hidden" name="broadcast_mode" value="banner">
-                <input type="hidden" name="banner_enabled" value="{{ $match->banner_enabled ? 1 : 0 }}">
-                <input type="hidden" name="banner_label" value="{{ $match->banner_label }}">
-                <input type="hidden" name="banner_title" value="{{ $match->banner_title }}">
-
-                <button class="px-5 h-11 rounded-xl bg-blue-600 hover:bg-blue-500 font-black transition">
-                    Banner →
-                </button>
-
-            </form>
-
         </div>
 
         <div class="text-center">
@@ -41,8 +26,7 @@
                 &nbsp;
             </div>
 
-            <div id="period-text"
-                class="inline-flex mt-5 px-6 py-2 rounded-full bg-blue-600/20 text-blue-300 font-black">
+            <div id="period-text" class="inline-flex mt-5 px-6 py-2 rounded-full bg-blue-600/20 text-blue-300 font-black">
                 {{ $match->period }}
             </div>
         </div>

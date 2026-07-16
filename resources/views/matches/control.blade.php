@@ -44,17 +44,11 @@
             <div id="sports-controls"
                 class="grid rounded-[2.5rem] bg-[#0f1724] border border-white/10 p-4 shadow-2xl grid-cols-1 lg:grid-cols-3 gap-4">
 
-                @if ($match->broadcast_mode === 'sports')
-                    @include('matches.control.local-panel')
+                @include('matches.control.local-panel')
 
-                    @include('matches.control.sports-panel')
+                @include('matches.control.sports-panel')
 
-                    @include('matches.control.visitor-panel')
-                @else
-                    <div class="lg:col-span-3">
-                        @include('matches.control.banner-panel')
-                    </div>
-                @endif
+                @include('matches.control.visitor-panel')
 
             </div>
 
