@@ -223,6 +223,7 @@
             }
         }
 
+        refreshControlTimer();
         setInterval(refreshControlTimer, 1000);
 
         window.currentMatchStatus = "{{ $match->status }}";
