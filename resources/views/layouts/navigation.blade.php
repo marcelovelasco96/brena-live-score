@@ -1,36 +1,15 @@
 <nav x-data="{ open: false }"
     class="sticky top-0 z-50 bg-[#090d17]/95 backdrop-blur-xl border-b border-white/10 text-white">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="h-20 flex items-center justify-between">
 
             {{-- Marca y navegación --}}
-            <div class="flex items-center gap-8">
-                <a href="{{ route('matches.index') }}" class="flex items-center gap-3 group">
+            <div class="flex items-center gap-4">
+                <a href="{{ route('matches.index') }}" class="flex items-center">
 
-                    <div
-                        class="w-11 h-11 rounded-2xl bg-blue-600
-                               flex items-center justify-center
-                               shadow-lg shadow-blue-950/40
-                               group-hover:bg-blue-500 transition">
-
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-
-                    <div>
-                        <p class="text-[10px] font-black uppercase tracking-[0.32em] text-blue-400">
-                            Municipalidad de Breña
-                        </p>
-
-                        <p class="text-lg font-black leading-tight tracking-tight">
-                            Breña Live Studio
-                        </p>
-                    </div>
+                    <img src="{{ config('branding.logo_dark') }}" alt="{{ config('branding.organization') }}"
+                        class="h-[50px] w-auto object-contain">
                 </a>
 
                 <div class="hidden md:flex items-center gap-2">

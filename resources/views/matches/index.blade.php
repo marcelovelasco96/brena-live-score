@@ -20,21 +20,9 @@
 
                 <div class="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                     <div>
-                        <div class="flex items-center gap-3 mb-3">
-                            <span
-                                class="inline-flex items-center gap-2 px-3 py-1.5
-                                       rounded-full bg-green-500/10
-                                       border border-green-400/15
-                                       text-[11px] font-black text-green-300
-                                       uppercase tracking-[0.18em]">
-
-                                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                                Todo listo para transmitir
-                            </span>
-                        </div>
 
                         <p class="text-blue-400 text-xs font-black uppercase tracking-[0.35em]">
-                            Breña Live Studio
+                            PLATAFORMA OFICIAL
                         </p>
 
                         <h1 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">

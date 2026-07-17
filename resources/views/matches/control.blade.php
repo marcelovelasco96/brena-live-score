@@ -46,7 +46,11 @@
 
                 @include('matches.control.local-panel')
 
-                @include('matches.control.sports-panel')
+                @if ($match->sport === 'football')
+                    @include('matches.control.sports-panel')
+                @elseif ($match->sport === 'volleyball')
+                    @include('matches.control.volleyball-panel')
+                @endif
 
                 @include('matches.control.visitor-panel')
 
@@ -129,10 +133,44 @@
 
                 const data = await response.json();
 
-                document.getElementById('team-a-score').textContent = data.team_a_score;
-                document.getElementById('team-b-score').textContent = data.team_b_score;
-                document.getElementById('timer-text').textContent = data.timer_text;
-                document.getElementById('period-text').textContent = data.period;
+                const teamAScore = document.getElementById('team-a-score');
+                const teamBScore = document.getElementById('team-b-score');
+                const timerText = document.getElementById('timer-text');
+                const periodText = document.getElementById('period-text');
+                const teamASets = document.getElementById('team-a-sets');
+                const teamBSets = document.getElementById('team-b-sets');
+                const volleyballSetNumber = document.getElementById('volleyball-set-number');
+
+                if (teamAScore) teamAScore.textContent = data.team_a_score;
+                if (teamBScore) teamBScore.textContent = data.team_b_score;
+                if (timerText) timerText.textContent = data.timer_text;
+                if (periodText) periodText.textContent = data.period;
+
+                if (teamASets && data.team_a_sets !== undefined) {
+                    teamASets.textContent = data.team_a_sets;
+                }
+
+                if (teamBSets && data.team_b_sets !== undefined) {
+                    teamBSets.textContent = data.team_b_sets;
+                }
+
+                if (volleyballSetNumber && data.set_number !== undefined) {
+                    volleyballSetNumber.textContent = data.set_number;
+                }
+
+                const startButton = document.getElementById('volleyball-start-button');
+                const finishButton = document.getElementById('volleyball-finish-button');
+
+                if (startButton && finishButton && data.status) {
+                    startButton.disabled = data.status !== 'pre_match';
+                    finishButton.disabled = data.status !== 'live';
+
+                    startButton.classList.toggle('opacity-40', startButton.disabled);
+                    startButton.classList.toggle('cursor-not-allowed', startButton.disabled);
+
+                    finishButton.classList.toggle('opacity-40', finishButton.disabled);
+                    finishButton.classList.toggle('cursor-not-allowed', finishButton.disabled);
+                }
 
                 if (data.team_a_penalties !== undefined) {
                     renderPenaltyDots('a', data.team_a_penalties);

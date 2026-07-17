@@ -166,6 +166,67 @@ class MatchGameController extends Controller
         return redirect()->route('matches.control', $match);
     }
 
+    public function updateVolleyball(Request $request, MatchGame $match)
+    {
+        abort_unless($match->sport === 'volleyball', 404);
+
+        $data = $request->validate([
+            'action' => ['required', 'in:start,finish_set,finish_match,reset_match'],
+            'winner' => ['nullable', 'in:a,b'],
+        ]);
+
+        switch ($data['action']) {
+
+            case 'start':
+                $match->status = 'live';
+                $match->save();
+                break;
+
+            case 'finish_set':
+                if (! isset($data['winner'])) {
+                    return back()->withErrors([
+                        'winner' => 'Debes indicar qué equipo ganó el set.',
+                    ]);
+                }
+
+                $setsField = $data['winner'] === 'a'
+                    ? 'team_a_sets'
+                    : 'team_b_sets';
+
+                $match->increment($setsField);
+
+                $match->team_a_score = 0;
+                $match->team_b_score = 0;
+                $match->set_number = max(1, (int) $match->set_number) + 1;
+                $match->status = 'live';
+                $match->save();
+                break;
+
+            case 'finish_match':
+                $match->status = 'finished';
+                $match->save();
+                break;
+
+            case 'reset_match':
+                $match->team_a_score = 0;
+                $match->team_b_score = 0;
+                $match->team_a_sets = 0;
+                $match->team_b_sets = 0;
+                $match->set_number = 1;
+                $match->status = 'pre_match';
+                $match->save();
+                break;
+        }
+
+        $match = $match->fresh();
+
+        if ($request->expectsJson()) {
+            return response()->json($this->matchPayload($match));
+        }
+
+        return redirect()->route('matches.control', $match);
+    }
+
     public function overlay(MatchGame $match)
     {
         return view('matches.overlay', compact('match'));
@@ -211,12 +272,22 @@ class MatchGameController extends Controller
     {
         return [
             'id' => $match->id,
+
+            'sport' => $match->sport,
+
             'team_a_score' => $match->team_a_score,
             'team_b_score' => $match->team_b_score,
+
+            'team_a_sets' => $match->team_a_sets,
+            'team_b_sets' => $match->team_b_sets,
+            'set_number' => $match->set_number,
+
             'period' => $match->period,
+
             'timer_seconds' => $match->currentTimerSeconds(),
             'timer_text' => gmdate('i:s', $match->currentTimerSeconds()),
             'timer_running' => $match->timer_running,
+
             'status' => $match->status,
         ];
     }
@@ -228,13 +299,14 @@ class MatchGameController extends Controller
 
     public function updateSettings(Request $request, MatchGame $match)
     {
+
         $data = $request->validate([
             'team_a_name' => ['required', 'string', 'max:255'],
             'team_b_name' => ['required', 'string', 'max:255'],
-            'team_a_logo' => ['nullable', 'image', 'max:2048'],
-            'team_b_logo' => ['nullable', 'image', 'max:2048'],
-            'team_a_background' => ['nullable', 'image', 'max:4096'],
-            'team_b_background' => ['nullable', 'image', 'max:4096'],
+            'team_a_logo' => ['nullable', 'image', 'max:20480'],
+            'team_b_logo' => ['nullable', 'image', 'max:20480'],
+            'team_a_background' => ['nullable', 'image', 'max:20480'],
+            'team_b_background' => ['nullable', 'image', 'max:20480'],
             'team_a_color' => ['required', 'string', 'max:20'],
             'team_b_color' => ['required', 'string', 'max:20'],
             'team_a_jersey_color' => ['required', 'string', 'max:20'],

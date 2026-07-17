@@ -56,4 +56,25 @@
             </button>
         </form>
     </div>
+
+    @if ($match->sport === 'volleyball')
+        <form method="POST" action="{{ route('matches.updateVolleyball', $match) }}" class="mt-4">
+
+            @csrf
+            @method('PATCH')
+
+            <input type="hidden" name="action" value="finish_set">
+            <input type="hidden" name="winner" value="a">
+
+            <button
+                class="w-full h-12 rounded-2xl bg-[#005290] hover:bg-[#0869ae]
+                border border-blue-300/20 text-sm font-black
+                shadow-lg active:scale-95 transition
+                disabled:opacity-40 disabled:cursor-not-allowed"
+                @disabled($match->status === 'finished')>
+
+                Dar set a {{ $match->team_a_name }}
+            </button>
+        </form>
+    @endif
 </div>

@@ -7,7 +7,11 @@
     <title>Overlay</title>
 
     @if ($match->broadcast_mode === 'sports')
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/overlay.js'])
+        @if ($match->sport === 'football')
+            @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/overlay.js'])
+        @elseif ($match->sport === 'volleyball')
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @endif
     @endif
 
     <style>

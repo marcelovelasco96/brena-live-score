@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/matches/{match}/period', [MatchGameController::class, 'updatePeriod'])->name('matches.updatePeriod');
     Route::patch('/matches/{match}/status', [MatchGameController::class, 'updateStatus'])->name('matches.updateStatus');
     Route::patch('/matches/{match}/timer', [MatchGameController::class, 'updateTimer'])->name('matches.updateTimer');
+    Route::patch('/matches/{match}/volleyball', [MatchGameController::class, 'updateVolleyball'])
+        ->name('matches.updateVolleyball');
 
     Route::patch('/matches/{match}/penalties', [MatchGameController::class, 'updatePenalties'])
         ->name('matches.updatePenalties');
