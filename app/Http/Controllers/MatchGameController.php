@@ -125,7 +125,7 @@ class MatchGameController extends Controller
                 break;
 
             case 'set_45':
-                $match->timer_seconds = 45 * 60;
+                $match->timer_seconds = 30 * 60;
                 $match->timer_running = false;
                 $match->timer_started_at = null;
                 $match->status = 'halftime';
