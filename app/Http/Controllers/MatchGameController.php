@@ -99,7 +99,7 @@ class MatchGameController extends Controller
 
             case 'start_second_half':
                 $match->period = '2T';
-                $match->timer_seconds = 30 * 60;
+                $match->timer_seconds = 10 * 60;
                 $match->timer_running = true;
                 $match->timer_started_at = now();
                 $match->status = 'live';
@@ -125,7 +125,7 @@ class MatchGameController extends Controller
                 break;
 
             case 'set_45':
-                $match->timer_seconds = 30 * 60;
+                $match->timer_seconds = 10 * 60;
                 $match->timer_running = false;
                 $match->timer_started_at = null;
                 $match->status = 'halftime';
