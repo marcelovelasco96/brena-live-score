@@ -1,24 +1,8 @@
 <div class="absolute top-8 left-8 scoreboard-root">
 
-    {{-- CABECERA --}}
-    <div
-        class="mx-auto w-fit px-8 py-2 rounded-2xl bg-gradient-to-r from-slate-900 to-[#0b2148] border border-white/10 shadow-xl">
-        <div class="flex items-center gap-5">
-            <span class="uppercase tracking-[0.25em] text-white text-sm font-extrabold">
-                MUNICIPALIDAD DE BREÑA
-            </span>
-
-            <span class="text-yellow-400 text-lg">•</span>
-
-            <span class="uppercase tracking-[0.25em] text-yellow-300 text-sm font-extrabold">
-                COPA INTERBARRIOS 2026
-            </span>
-        </div>
-    </div>
-
     {{-- MARCADOR + PENALES --}}
     <div class="relative">
-        <div class="mt-1 flex items-stretch overflow-hidden rounded-2xl shadow-2xl text-white font-black">
+        <div class="flex items-stretch overflow-hidden rounded-2xl shadow-2xl text-white font-black">
 
             <div id="team-a-bg" class="flex items-center gap-5 px-8 py-4 min-w-[380px] bg-cover bg-center"
                 @if ($match->team_a_background) style="background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url('/storage/{{ $match->team_a_background }}');"
